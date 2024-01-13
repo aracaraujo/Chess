@@ -10,6 +10,8 @@
 #include <cassert>        // for ASSERT
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
+#include <iostream>
+
 using namespace std;
 
 /***********************************************
@@ -351,9 +353,22 @@ bool move(char* board, int positionFrom, int positionTo)
    // only move there is the suggested move is on the set of possible moves
    if (possiblePrevious.find(positionTo) != possiblePrevious.end())
    {
-      board[positionTo] = board[positionFrom];
-      board[positionFrom] = ' ';
-      return true;
+       // The following two if statements will check if the piece selected is according to
+       // whose turns is and then move or not. If the white is trying to move, and it is the
+       // white's turn it will move if it's the black's turn it won't and vice versa.
+       if (isWhite(board,positionFrom/8,positionFrom%8) && board[64] == '1'){
+           board[positionTo] = board[positionFrom];
+           board[positionFrom] = ' ';
+           board[64] = '2';
+           return true;
+       }
+       if (isBlack(board,positionFrom/8,positionFrom%8) && board[64] == '2'){
+           board[positionTo] = board[positionFrom];
+           board[positionFrom] = ' ';
+           board[64] = '1';
+           return true;
+       }
+       return false;
    }
 
    return false;
@@ -373,13 +388,13 @@ void callBack(Interface *pUI, void * p)
 
    // the first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in OpenGL. 
-   char * board = (char *)p;  
+   char * board = (char *)p;
 
-   // move 
-   if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
-      pUI->clearSelectPosition();
-   else
-      possible = getPossibleMoves(board, pUI->getSelectPosition());
+   // move
+    if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
+        pUI->clearSelectPosition();
+    else
+        possible = getPossibleMoves(board, pUI->getSelectPosition());
 
    // if we clicked on a blank spot, then it is not selected
    if (pUI->getSelectPosition() != -1 && board[pUI->getSelectPosition()] == ' ')
@@ -504,7 +519,7 @@ int main(int argc, char** argv)
 
    // Initialize the game class
    // note this is upside down: 0 row is at the bottom
-   char board[64] = {
+   char board[65] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
       'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
@@ -513,7 +528,8 @@ int main(int argc, char** argv)
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       // ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
+      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R',
+      '1'
    };
    
 #ifdef _WIN32

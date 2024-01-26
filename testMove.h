@@ -90,4 +90,11 @@ private:
    void pieceTypeFromLetter_king() const;
    void pieceTypeFromLetter_queen() const;
 
+   PieceType ROOK;
+   PieceType BISHOP;
+   PieceType KNIGHT;
+   PieceType PAWN;
+   PieceType QUEEN;
+   PieceType KING;
+   PieceType SPACE;
 };

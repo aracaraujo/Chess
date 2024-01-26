@@ -27,7 +27,7 @@ public:
     string getText() {return "stub";}
 
     // Letter from piece type
-    char letterFromPieceType(Piece input);
+    char letterFromPieceType(PieceType input);
     PieceType pieceTypeFromLetter(char input);
 
 private:

@@ -10,15 +10,6 @@
 #include "position.h"
 #include <cassert>
 
-int SPACE;
-
-PieceType ROOK;
-PieceType BISHOP;
-PieceType KNIGHT;
-PieceType PAWN;
-Piece QUEEN;
-Piece KING;
-
 /*************************************
   * Constructor
   **************************************/

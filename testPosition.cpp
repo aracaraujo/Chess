@@ -12,13 +12,9 @@
 #include "position.h"     // for POSITION
 #include <cassert>        // for ASSERT
 
-
 Position ADD_C;
-
 Position ADD_R;
-
 Position SUB_C;
-
 Position SUB_R;
 
 /*************************************
@@ -489,7 +485,7 @@ void PositionTest::set_both()
 
 /*************************************
  * SET TEST Text
- * Set to "c6" 
+ * Set to "c6"
  * +---a--b--c--d--e--f--g--h---+
  * |                            |
  * 8  56 57 58 59 60 61 62 63   8

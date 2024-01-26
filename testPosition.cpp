@@ -13,6 +13,14 @@
 #include <cassert>        // for ASSERT
 
 
+Position ADD_C;
+
+Position ADD_R;
+
+Position SUB_C;
+
+Position SUB_R;
+
 /*************************************
  * GET  Zero
  * Default position: slot zero at a1
@@ -625,7 +633,7 @@ void PositionTest::adjust_addRow()
    pos.location = 22;
 
    // EXERCISE
-   pos += ADD_R;
+    pos += ADD_R;
 
    // VERIFY
    assert(pos.location == 30);

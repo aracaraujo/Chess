@@ -9,7 +9,6 @@
 
 #pragma once
 
-
 /***************************************************
  * POSITION TEST
  * Test the Position class

@@ -8,6 +8,7 @@
 
 
 #pragma once
+#include "pieceType.h"
 
  /***************************************************
   * MOVE TEST

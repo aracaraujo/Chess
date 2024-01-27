@@ -9,30 +9,28 @@
 #include "piece.h"
 #include "move.h"
 
+class TestKing;
 
 class King : protected Piece{
 public:
+    friend TestKing;
     // Default Constructor
     King();
 
     // Non-Default Constructor.
-    King(Piece type);
+    King(int row, int col, bool white);
 
-    // Add distance of move to moves list.
-    void addMove(int move);
+    char getLetter() override;
 
-    // Get the distance for the last move in moves list.
-    int getLastMove();
+    void display() override;
 
-    // Returns the length of moves list.
-    int getNumOfMoves();
+    Move getMoves() override;
 
     // Checks if king has moved already.
     bool canCastle();
 
 private:
-    //List to store distance of each move.
-    std::list<int> moves;
+    char letter;
 };
 
 

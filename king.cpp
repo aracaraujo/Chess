@@ -8,24 +8,25 @@ King::King() {
 
 }
 
-King::King(Piece type) {
+King::King(int row, int col, bool white) : Piece(row, col, white) {
 
-}
-
-void King::addMove(int move) {
-
-}
-
-int King::getLastMove() {
-    return 0;
-}
-
-int King::getNumOfMoves() {
-    return 0;
 }
 
 bool King::canCastle() {
     return false;
+}
+
+char King::getLetter() {
+    return 'x';
+}
+
+void King::display() {
+
+    Piece::display();
+}
+
+Move King::getMoves() {
+    return Piece::getMoves();
 }
 
 

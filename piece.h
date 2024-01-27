@@ -6,7 +6,8 @@
 #define CHESS_PIECE_H
 
 #include "position.h"
-
+#include "uiDraw.h"
+#include "move.h"
 
 class Piece {
 public:
@@ -14,14 +15,41 @@ public:
     Piece();
 
     // Non-Default Constructor
-    Piece(char type);
+    Piece(int row, int col, bool white);
 
-    char getType();
+    // Move piece to new position.
+    void assign();
 
+    // Change pawn to queen
+    void assignPiece(Piece piece);
+
+    //Get color of piece.
+    bool isWhite();
+
+    // Check if colors turn.
+    bool isMove();
+
+    // Getters.
+    int getNumMoves();
     Position getPosition();
-protected:
-    char type;
-    Position pos;
+
+    bool justMoved();
+
+    virtual char getLetter();
+
+    virtual void display();
+
+    virtual Move getMoves();
+
+
+
+
+private:
+    Position position;
+    bool fWhite;
+    int nMoves;
+    int lastMove;
+    ogstream gout
 
 };
 

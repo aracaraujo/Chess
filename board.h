@@ -8,16 +8,18 @@
 #include "position.h"
 #include "move.h"
 #include "testBoard.h"
+#include "piece.h"
 
 
 class Board {
     friend TestBoard;
 public:
 
-    Board() : board({}), currentMove(1) {};
+    Board();
 
-    int getCurentMove() { return 0; };
-    bool whiteTurn() {return true; };
+
+    int getCurentMove() { return currentMove; };
+    bool whiteTurn() {return currentMove % 2 != 0; };
     void display(Position posHover, Position PosSel);
 
     Piece get(Position pos);

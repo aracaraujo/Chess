@@ -9,13 +9,15 @@
 class Rook : public Piece{
 
 public:
-    Rook() : Piece(){};
+    Rook() : position(Position(0,0)), fWhite(true){};
 
-    Rook(int row, int col, bool white) : Piece(row, col, white){};
+    Rook(int row, int col, bool white) : position(Position(row,col)), fWhite(white){};
 
 private:
     Position position;
     bool fWhite;
+    int nMoves;
+    int lastMove;
 
 };
 

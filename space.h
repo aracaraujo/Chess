@@ -6,12 +6,12 @@
 #define CHESS_SPACE_H
 #include "piece.h"
 
-class Space : Piece {
+class Space : public Piece {
 
 public:
     Space() : Piece(){};
 
-    Space(int row, int col, bool white) : Piece(row, col, white){};
+    Space(int row, int col) : Piece(row, col, true){};
 
 private:
     Position position;

@@ -25,6 +25,8 @@ public:
 
     //Getters
     string getText() {return "stub";}
+    Position getSrc() { return source; };
+    Position getDes() { return dest; };
 
     // Letter from piece type
     char letterFromPieceType(PieceType input);

@@ -11,7 +11,8 @@
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
 #include <iostream>
-#include "testBoard.h"
+#include "testBoard.h"    // for unit tests
+#include "testKing.h"     // for unit tests
 
 using namespace std;
 
@@ -500,11 +501,22 @@ void readFile(const char* fileName, char* board)
    fin.close();
 }
 
+
+/*********************************
+ * TEST RUNNER
+ * Run unit tests for Board and King
+ *********************************/
 void runner()
 {
-    TestBoard().run();
+    // Unit Test objects.
+    TestBoard tBoard;
+    TestKing tKing;
 
-    cout << "All tests passed" << endl;
+    // Call unit test runner functions.
+    tBoard.run();
+    tKing.run();
+
+    cout << "All test cases passed!" << endl;
 }
 
 /*********************************
@@ -523,37 +535,39 @@ int WINAPI WinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
-//   Interface ui("Chess");
-//
-//   // Initialize the game class
-//   // note this is upside down: 0 row is at the bottom
-//   char board[65] = {
-//      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-//      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
-//      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-//      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-//      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-//      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-//      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-//      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R',
-//      '1'
-//   };
-//
-//#ifdef _WIN32
-// //  int    argc;
-// //  LPWSTR * argv = CommandLineToArgvW(GetCommandLineW(), &argc);
-// //  string filename = argv[1];
-//   if (__argc == 2)
-//      readFile(__argv[1], board);
-//#else // !_WIN32
-//   if (argc == 2)
-//      readFile(argv[1], board);
-//#endif // !_WIN32
-//
-//   // set everything into action
-//   ui.run(callBack, board);
+   runner();
 
-    runner();
+   /*
+   Interface ui("Chess");    
+
+   // Initialize the game class
+   // note this is upside down: 0 row is at the bottom
+   char board[65] = {
+      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
+      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
+      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R',
+      '1'
+   };
+   
+#ifdef _WIN32
+ //  int    argc;
+ //  LPWSTR * argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+ //  string filename = argv[1];
+   if (__argc == 2)
+      readFile(__argv[1], board);
+#else // !_WIN32
+   if (argc == 2)
+      readFile(argv[1], board);
+#endif // !_WIN32
+
+   // set everything into action
+   ui.run(callBack, board);
+   */
 
    return 0;
 }

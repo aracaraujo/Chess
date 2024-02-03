@@ -13,11 +13,18 @@ King::King(int row, int col, bool white) : Piece(row, col, white) {
 }
 
 bool King::canCastle() {
-    return false;
+    if (King::getNumMoves() == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 char King::getLetter() {
-    return 'x';
+    return letter;
 }
 
 Move King::getMoves() {

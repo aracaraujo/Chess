@@ -39,12 +39,14 @@ public:
 
     virtual Move getMoves();
 
+    // Set number of moves.
+    void incrementNumMoves();
+
 private:
     Position position;
     bool fWhite;
     int nMoves;
     int lastMove;
-
 };
 
 

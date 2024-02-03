@@ -3,6 +3,8 @@
 //
 
 #include "testKing.h"
+#include "piece.h"
+#include <iostream>
 
 
 void TestKing::run() {
@@ -57,6 +59,7 @@ void TestKing::testCanCastleNo() {
     King king;
 
     //Exercise
+    king.incrementNumMoves();
 
     //Validate
     assert(king.getNumMoves() != 0);

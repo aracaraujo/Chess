@@ -22,7 +22,7 @@ public:
 
     char getLetter() override;
 
-    void display() override;
+    void display(ogstream gout) override;
 
     Move getMoves() override;
 

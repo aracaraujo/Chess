@@ -17,19 +17,6 @@ private:
     void testCanCastleYes();
     void testCanCastleNo();
 
-    struct RC
-    {
-        int row;
-        int col;
-    };
-/*    RC moves[8] =
-            {
-                    {-1,  1}, {0,  1}, {1,  1},
-                    {-1,  0},          {1,  0},
-                    {-1, -1}, {0, -1}, {1, -1}
-            };
-*/
-
 };
 
 

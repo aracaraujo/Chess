@@ -37,9 +37,12 @@ public:
 
     virtual char getLetter();
 
-    virtual void display();
+    virtual void display(ogstream gout);
 
     virtual Move getMoves();
+
+    // Set number of moves.
+    void incrementNumMoves();
 
 
 
@@ -49,7 +52,7 @@ private:
     bool fWhite;
     int nMoves;
     int lastMove;
-    ogstream gout
+    ogstream gout;
 
 };
 

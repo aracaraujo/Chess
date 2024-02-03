@@ -11,6 +11,8 @@
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
 #include <iostream>
+#include "testBoard.h"    // for unit tests
+#include "testKing.h"     // for unit tests
 
 using namespace std;
 
@@ -500,6 +502,23 @@ void readFile(const char* fileName, char* board)
 }
 
 /*********************************
+ * TEST RUNNER
+ * Run unit tests for Board and King
+ *********************************/
+ void runner()
+{
+    // Unit Test objects.
+    TestBoard tBoard;
+    TestKing tKing;
+
+    // Call unit test runner functions.
+    tBoard.run();
+    tKing.run();
+
+    cout << "All test cases passed!" << endl;
+}
+
+/*********************************
  * Main is pretty sparse.  Just initialize
  * my Demo type and call the display engine.
  * That is all!
@@ -515,6 +534,10 @@ int WINAPI WinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
+
+   runner();
+
+   /*
    Interface ui("Chess");    
 
    // Initialize the game class
@@ -543,7 +566,8 @@ int main(int argc, char** argv)
 #endif // !_WIN32
 
    // set everything into action
-   ui.run(callBack, board);             
+   ui.run(callBack, board);
+   */
 
    return 0;
 }

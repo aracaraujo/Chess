@@ -25,7 +25,7 @@ bool Piece::isMove() {
 }
 
 int Piece::getNumMoves() {
-    return 0;
+    return nMoves;
 }
 
 Position Piece::getPosition() {
@@ -50,5 +50,9 @@ Move Piece::getMoves() {
 
 bool Piece::justMoved() {
     return false;
+}
+
+void Piece::incrementNumMoves() {
+    nMoves += 1;
 }
 

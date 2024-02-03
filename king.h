@@ -11,7 +11,7 @@
 
 class TestKing;
 
-class King : protected Piece{
+class King : public Piece{
 public:
     friend TestKing;
     // Default Constructor

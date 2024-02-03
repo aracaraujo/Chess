@@ -17,7 +17,6 @@ public:
 
     Board();
 
-
     int getCurentMove() { return currentMove; };
     bool whiteTurn() {return currentMove % 2 != 0; };
     void display(Position posHover, Position PosSel);
@@ -32,10 +31,9 @@ private:
     // Attributes
     Piece board[64];
     int currentMove;
-    ogstream gout;
 
     // Methods
-    void swap(Position pos1, Position pos2);
+    void swap(const Position& pos1, const Position& pos2);
 };
 
 

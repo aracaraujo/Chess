@@ -37,19 +37,13 @@ public:
 
     virtual char getLetter();
 
-    virtual void display();
-
     virtual Move getMoves();
-
-
-
 
 private:
     Position position;
     bool fWhite;
     int nMoves;
     int lastMove;
-    ogstream gout
 
 };
 

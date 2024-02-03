@@ -22,8 +22,6 @@ public:
 
     char getLetter() override;
 
-    void display() override;
-
     Move getMoves() override;
 
     // Checks if king has moved already.

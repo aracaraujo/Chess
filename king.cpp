@@ -20,11 +20,6 @@ char King::getLetter() {
     return 'x';
 }
 
-void King::display() {
-
-    Piece::display();
-}
-
 Move King::getMoves() {
     return Piece::getMoves();
 }

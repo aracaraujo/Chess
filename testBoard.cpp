@@ -33,6 +33,9 @@ void TestBoard::constructor() const {
     };
     // EXERCISE
     Board board = Board();
+    for (int i = 0; i<64; i++){
+        assert(board.board[i].getLetter() == board_array[i].getLetter());
+    }
     //VERIFY
     assert(board.board == board_array);
     assert(board.currentMove == 1);
@@ -137,74 +140,50 @@ void TestBoard::move_simple() const {
 void TestBoard::move_enpassant() const {
     // SETUP
     Board board = Board();
-    PieceType enpassant_board[64] = {
-            ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK,
-            PAWN, SPACE, PAWN, SPACE, PAWN, PAWN, PAWN, PAWN,
-            SPACE, SPACE, SPACE, PAWN, SPACE, SPACE, SPACE, SPACE,
-            PAWN, PAWN, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            SPACE, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN,
-            ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK
-    };
-    board.board = enpassant_board;
+
     board.board[48] = Space(2,1);
+    board.board[24] = Pawn(5,1, true);
+    board.board[25] = Pawn(5,2,false);
+    board.board[9] = Space(7,2);
 
     Move move("a5b6");
     // EXERCISE
     board.move(move);
     // VERIFY
-    assert(board.get(Position(1,5)) == SPACE);
-    assert(board.get(Position(2,6)) == PAWN);
-    assert(board.get(Position(2,5)) == SPACE);
+    assert(board.get(Position(1,5)).getLetter() == ' ');
+    assert(board.get(Position(2,6)).getLetter() == 'p');
+    assert(board.get(Position(2,5)).getLetter() == ' ');
 }
 
 void TestBoard::move_castleKing() const {
     // SETUP
     Board board;
-    PieceType castle_king_board[64] = {
-            ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK,
-            PAWN, SPACE, PAWN, SPACE, PAWN, PAWN, PAWN, PAWN,
-            SPACE, SPACE, SPACE, PAWN, SPACE, SPACE, SPACE, SPACE,
-            PAWN, PAWN, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, PAWN, KNIGHT,
-            SPACE, PAWN, PAWN, PAWN, PAWN, PAWN, BISHOP, PAWN,
-            ROOK, KNIGHT, BISHOP, QUEEN, KING, SPACE, SPACE, ROOK
-    };
-    board.board = castle_king_board;
+    board.board[61] = Space(1,6);
+    board.board[61] = Space(1,7);
     Move move("e1g1");
     // EXERCISE
     board.move(move);
     // VERIFY
-    assert(board.get(Position(1,5)) == SPACE);
-    assert(board.get(Position(1,7)) == KING);
-    assert(board.get(Position(1,8)) == SPACE);
-    assert(board.get(Position(1,6)) == ROOK);
+    assert(board.get(Position(1,5)).getLetter() == ' ');
+    assert(board.get(Position(1,7)).getLetter() == 'k');
+    assert(board.get(Position(1,8)).getLetter() == ' ');
+    assert(board.get(Position(1,6)).getLetter() == 'r');
 }
 
 void TestBoard::move_castleQueen() const {
     // SETUP
     Board board;
-    PieceType castle_queen_board[64] = {
-            ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK,
-            PAWN, SPACE, PAWN, SPACE, PAWN, PAWN, PAWN, PAWN,
-            SPACE, SPACE, SPACE, PAWN, SPACE, SPACE, SPACE, SPACE,
-            PAWN, PAWN, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE,
-            KNIGHT, PAWN, SPACE, PAWN, SPACE, SPACE, SPACE, SPACE,
-            SPACE, BISHOP, PAWN, QUEEN, PAWN, PAWN, PAWN, PAWN,
-            ROOK, SPACE, SPACE, SPACE, KING, BISHOP, KNIGHT, ROOK
-    };
-    board.board = castle_queen_board;
+    board.board[57] = Space(1,2);
+    board.board[58] = Space(1,3);
+    board.board[59] = Space(1,4);
     Move move("e1c1");
     // EXERCISE
     board.move(move);
     // VERIFY
-    assert(board.get(Position(1,5)) == SPACE);
-    assert(board.get(Position(1,3)) == KING);
-    assert(board.get(Position(1,1)) == SPACE);
-    assert(board.get(Position(1,4)) == ROOK);
+    assert(board.get(Position(1,5)).getLetter() == ' ');
+    assert(board.get(Position(1,3)).getLetter() == 'k');
+    assert(board.get(Position(1,1)).getLetter() == ' ');
+    assert(board.get(Position(1,4)).getLetter() == 'r');
 }
 
 void TestBoard::assign_simple() const {
@@ -216,8 +195,8 @@ void TestBoard::swap_simple() const {
     // EXERCISE
     board.swap(Position(2,1),Position(3,1));
     // VERIFY
-    assert(board.get(Position(2,1)) == SPACE);
-    assert(board.get(Position(3,1)) == PAWN);
+    assert(board.get(Position(2,1)).getLetter() == ' ');
+    assert(board.get(Position(3,1)).getLetter() == 'p');
 }
 
 

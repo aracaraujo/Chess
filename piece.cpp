@@ -40,10 +40,6 @@ void Piece::assignPiece(Piece piece) {
 
 }
 
-void Piece::display(ogstream gout) {
-
-}
-
 Move Piece::getMoves() {
     return Move();
 }

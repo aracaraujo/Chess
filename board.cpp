@@ -17,7 +17,7 @@ Board::Board() {
 
     // Setting up spaces.
     for (int i = 16; i < 48; ++i) {
-        this->board[i] = Space(i / 8 + 1, i % 8 + 1); // Assuming Space is a class for an empty space
+        this->board[i] = Space(i / 8, i % 8); // Assuming Space is a class for an empty space
     }
 
 
@@ -31,7 +31,7 @@ Board::Board() {
     this->board[6] = Knight(8, 7, false);
     this->board[7] = Rook(8, 8, false);
     for (int i = 8; i < 16; ++i) {
-        this->board[i] = Pawn(i / 8 + 1, i % 8 + 1,false);
+        this->board[i] = Pawn(i / 8, i % 8,false);
     }
 
 
@@ -45,7 +45,7 @@ Board::Board() {
     this->board[62] = Knight(1, 7, true);
     this->board[63] = Rook(1, 8, true);
     for (int i = 48; i < 56; ++i) {
-        this->board[i] = Pawn(i / 8 + 1, i % 8 + 1,true);
+        this->board[i] = Pawn(i / 8, i % 8,true);
     }
 
     this->currentMove = 1;

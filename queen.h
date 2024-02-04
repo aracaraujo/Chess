@@ -12,12 +12,18 @@ class Queen : public Piece{
 public:
     Queen() : Piece(){};
 
-    Queen(int row, int col, bool white) : Piece(row, col, white){};
+    Queen(int loc,bool white) : Piece(loc, white){
+        this->letter = 'q';
+    }
+
+    Queen(int row, int col, bool white) : Piece(row, col, white){
+        this->letter = 'q';
+    };
+
+    char getLetter() override { return letter; };
 
 private:
-    Position position;
-    bool fWhite;
-
+    char letter;
 };
 
 

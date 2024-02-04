@@ -5,7 +5,7 @@
 #include "testKing.h"
 #include "piece.h"
 #include <iostream>
-
+#include <cassert>
 
 void TestKing::run() {
     testGetLetterWhite();

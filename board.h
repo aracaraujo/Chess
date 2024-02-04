@@ -25,11 +25,11 @@ public:
     void reset();
     void move( Move move);
     void assign(Piece piece);
-
+    Piece board[64];
 private:
 
     // Attributes
-    Piece board[64];
+
     int currentMove;
 
     // Methods

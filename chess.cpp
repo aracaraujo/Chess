@@ -13,6 +13,10 @@
 #include <iostream>
 #include "testBoard.h"    // for unit tests
 #include "testKing.h"     // for unit tests
+#include "board.h"
+#include "king.h"
+#include "space.h"
+#include "position.h"
 
 using namespace std;
 
@@ -516,7 +520,7 @@ void runner()
     tBoard.run();
     tKing.run();
 
-    cout << "All test cases passed!" << endl;
+//    cout << "All test cases passed!" << endl;
 }
 
 /*********************************

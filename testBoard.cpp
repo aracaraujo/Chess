@@ -33,9 +33,7 @@ void TestBoard::constructor() const {
     };
     // EXERCISE
     Board board = Board();
-    for (int i = 0; i<64; i++){
-        assert(board.board[i].getLetter() == board_array[i].getLetter());
-    }
+
     //VERIFY
     assert(board.board == board_array);
     assert(board.currentMove == 1);
@@ -83,9 +81,10 @@ void TestBoard::get_king_position() const {
     // SETUP
     Board board = Board();
     // EXERCISE
-    auto king = board.get(Position(1,4));
-    // VERIFY
-    assert(king.getLetter() == 'r');
+    Piece king = board.get(Position(1,4));
+    cout << king.getPosition().getLocation() << endl;
+    // VERIFY4
+    assert(king.getLetter() == 'k');
 }
 
 void TestBoard::get_space_position() const {

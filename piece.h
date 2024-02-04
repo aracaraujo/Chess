@@ -14,6 +14,8 @@ public:
     // Default Constructor
     Piece();
 
+    Piece(int loc, bool white);
+
     // Non-Default Constructor
     Piece(int row, int col, bool white);
 
@@ -42,11 +44,12 @@ public:
     // Set number of moves.
     void incrementNumMoves();
 
-private:
+protected:
     Position position;
     bool fWhite;
     int nMoves;
     int lastMove;
+    char letter;
 };
 
 

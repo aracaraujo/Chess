@@ -4,18 +4,31 @@
 
 #ifndef CHESS_SPACE_H
 #define CHESS_SPACE_H
+
+#include <iostream>
 #include "piece.h"
+
+using namespace std;
 
 class Space : public Piece {
 
 public:
-    Space() : Piece(){};
+    Space(){
+        this->letter = ' ';
+    };
 
-    Space(int row, int col) : Piece(row, col, true){};
+    Space(int loc) : Piece(loc, true){
+        this->letter = ' ';
+    }
+
+    Space(int row, int col) : Piece(row,col, true){
+        this->letter = ' ';
+    };
+
+    char getLetter() override { return letter; };
 
 private:
-    Position position;
-    bool fWhite;
+    char letter;
 };
 
 

@@ -8,16 +8,23 @@ Piece::Piece() {
 
 }
 
-Piece::Piece(int row, int col, bool white) {
+Piece::Piece(int loc, bool white){
+    position = Position(loc);
+    fWhite = white;
+    nMoves = 0;
+}
 
+Piece::Piece(int row, int col, bool white) {
+    position = Position(row,col);
+    fWhite = white;
+    nMoves = 0;
 }
 
 void Piece::assign() {
-
 }
 
 bool Piece::isWhite() {
-    return false;
+    return fWhite;
 }
 
 bool Piece::isMove() {
@@ -29,18 +36,14 @@ int Piece::getNumMoves() {
 }
 
 Position Piece::getPosition() {
-    return Position();
+    return position;
 }
 
 char Piece::getLetter() {
-    return 0;
+    return letter;
 }
 
 void Piece::assignPiece(Piece piece) {
-
-}
-
-void Piece::display(ogstream gout) {
 
 }
 

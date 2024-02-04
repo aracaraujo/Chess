@@ -11,12 +11,18 @@ class Bishop : public Piece{
 public:
     Bishop() : Piece(){};
 
-    Bishop(int row, int col, bool white) : Piece(row, col, white){};
+    Bishop(int loc,bool white) : Piece(loc, white){
+        this->letter = 'b';
+    }
+
+    Bishop(int row, int col, bool white) : Piece(row, col, white){
+        this->letter = 'b';
+    };
+
+    char getLetter() override { return letter; };
 
 private:
-    Position position;
-    bool fWhite;
-
+    char letter;
 };
 
 

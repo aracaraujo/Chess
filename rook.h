@@ -9,16 +9,20 @@
 class Rook : public Piece{
 
 public:
-    Rook() : position(Position(0,0)), fWhite(true){};
+    Rook();
 
-    Rook(int row, int col, bool white) : position(Position(row,col)), fWhite(white){};
+    Rook(int loc,bool white) : Piece(loc, white){
+        this->letter = 'r';
+    }
+
+    Rook(int row, int col, bool white) : Piece(row,col,white){
+        this->letter = 'r';
+    };
+
+    char getLetter() override { return letter; };
 
 private:
-    Position position;
-    bool fWhite;
-    int nMoves;
-    int lastMove;
-
+    char letter;
 };
 
 

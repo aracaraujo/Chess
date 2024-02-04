@@ -14,6 +14,8 @@ public:
     // Default Constructor
     Piece();
 
+    Piece(int loc, bool white);
+
     // Non-Default Constructor
     Piece(int row, int col, bool white);
 
@@ -37,23 +39,17 @@ public:
 
     virtual char getLetter();
 
-    virtual void display(ogstream gout);
-
     virtual Move getMoves();
 
     // Set number of moves.
     void incrementNumMoves();
 
-
-
-
-private:
+protected:
     Position position;
     bool fWhite;
     int nMoves;
     int lastMove;
-    ogstream gout;
-
+    char letter;
 };
 
 

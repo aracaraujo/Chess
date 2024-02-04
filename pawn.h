@@ -13,12 +13,18 @@ class Pawn : public Piece {
 public:
     Pawn() : Piece(){};
 
-    Pawn(int row, int col, bool white) : Piece(row, col, white){};
+    Pawn(int loc,bool white) : Piece(loc, white){
+        this->letter = 'p';
+    }
+
+    Pawn(int row, int col, bool white) : Piece(row, col, white){
+        this->letter = 'p';
+    };
+
+    char getLetter() override { return this->letter; };
 
 private:
-    Position position;
-    bool fWhite;
-
+    char letter;
 };
 
 

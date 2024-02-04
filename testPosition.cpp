@@ -12,11 +12,6 @@
 #include "position.h"     // for POSITION
 #include <cassert>        // for ASSERT
 
-Position ADD_C;
-Position ADD_R;
-Position SUB_C;
-Position SUB_R;
-
 /*************************************
  * GET  Zero
  * Default position: slot zero at a1

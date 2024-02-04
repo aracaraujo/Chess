@@ -11,11 +11,18 @@ class Knight : public Piece{
 public:
     Knight() : Piece(){};
 
-    Knight(int row, int col, bool white) : Piece(row, col, white){};
+    Knight(int loc,bool white) : Piece(loc, white){
+        this->letter = 'n';
+    }
+
+    Knight(int row, int col, bool white) : Piece(row, col, white){
+        this->letter = 'n';
+    };
+
+    char getLetter() override { return letter; };
 
 private:
-    Position position;
-    bool fWhite;
+    char letter;
 };
 
 

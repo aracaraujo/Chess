@@ -13,6 +13,10 @@
 #include <iostream>
 #include "testBoard.h"    // for unit tests
 #include "testKing.h"     // for unit tests
+#include "board.h"
+#include "king.h"
+#include "space.h"
+#include "position.h"
 
 using namespace std;
 
@@ -501,11 +505,12 @@ void readFile(const char* fileName, char* board)
    fin.close();
 }
 
+
 /*********************************
  * TEST RUNNER
  * Run unit tests for Board and King
  *********************************/
- void runner()
+void runner()
 {
     // Unit Test objects.
     TestBoard tBoard;
@@ -515,7 +520,7 @@ void readFile(const char* fileName, char* board)
     tBoard.run();
     tKing.run();
 
-    cout << "All test cases passed!" << endl;
+//    cout << "All test cases passed!" << endl;
 }
 
 /*********************************
@@ -534,7 +539,6 @@ int WINAPI WinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
-
    runner();
 
    /*

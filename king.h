@@ -17,12 +17,15 @@ public:
     // Default Constructor
     King();
 
+    King(int loc,bool white) : Piece(loc, white){
+        this->letter = 'k';
+    }
+
     // Non-Default Constructor.
     King(int row, int col, bool white);
 
-    char getLetter() override;
 
-    void display(ogstream gout) override;
+    char getLetter() override { return letter; };
 
     Move getMoves() override;
 

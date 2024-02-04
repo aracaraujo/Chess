@@ -5,11 +5,11 @@
 #include "king.h"
 
 King::King() {
-
+    letter = 'k';
 }
 
 King::King(int row, int col, bool white) : Piece(row, col, white) {
-
+    this->letter = 'k';
 }
 
 bool King::canCastle() {
@@ -21,15 +21,6 @@ bool King::canCastle() {
     {
         return false;
     }
-}
-
-char King::getLetter() {
-    return letter;
-}
-
-void King::display(ogstream gout) {
-
-
 }
 
 Move King::getMoves() {

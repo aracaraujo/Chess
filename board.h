@@ -7,12 +7,11 @@
 #include "uiDraw.h"
 #include "position.h"
 #include "move.h"
-#include "testBoard.h"
 #include "piece.h"
 
 
 class Board {
-    friend TestBoard;
+
 public:
 
     Board();
@@ -21,19 +20,18 @@ public:
     bool whiteTurn() {return currentMove % 2 != 0; };
     void display(Position posHover, Position PosSel);
 
-    Piece get(Position pos);
     void reset();
-    void move( Move move);
-    void assign(Piece piece);
-    Piece board[64];
+
+//    void assign(Piece piece);
 private:
 
     // Attributes
+    Piece * board[8][8];
 
     int currentMove;
 
     // Methods
-    void swap(const Position& pos1, const Position& pos2);
+
 };
 
 

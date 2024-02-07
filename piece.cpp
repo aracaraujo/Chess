@@ -4,58 +4,31 @@
 
 #include "piece.h"
 
-Piece::Piece() {
+void Pawn::addPromotion(set<Move> &moves, Move &move) const {
+    move.setPromote(QUEEN);
+    moves.insert(move);
+}
+
+void Pawn::getMoves(set<Move> &moves, const Board &board) const {
 
 }
 
-Piece::Piece(int loc, bool white){
-    position = Position(loc);
-    fWhite = white;
-    nMoves = 0;
-}
-
-Piece::Piece(int row, int col, bool white) {
-    position = Position(row,col);
-    fWhite = white;
-    nMoves = 0;
-}
-
-void Piece::assign() {
-}
-
-bool Piece::isWhite() {
-    return fWhite;
-}
-
-bool Piece::isMove() {
-    return false;
-}
-
-int Piece::getNumMoves() {
-    return nMoves;
-}
-
-Position Piece::getPosition() {
-    return position;
-}
-
-char Piece::getLetter() {
-    return letter;
-}
-
-void Piece::assignPiece(Piece piece) {
+void King::getMoves(set<Move> &moves, const Board &board) const {
 
 }
 
-Move Piece::getMoves() {
-    return Move();
+void Bishop::getMoves(set<Move> &moves, const Board &board) const {
+
 }
 
-bool Piece::justMoved() {
-    return false;
+void Knight::getMoves(set<Move> &moves, const Board &board) const {
+
 }
 
-void Piece::incrementNumMoves() {
-    nMoves += 1;
+void Queen::getMoves(set<Move> &moves, const Board &board) const {
+
 }
 
+void Rook::getMoves(set<Move> &moves, const Board &board) const {
+
+}

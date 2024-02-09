@@ -3,6 +3,59 @@
 //
 
 #include "piece.h"
+#include "board.h"
+
+void Piece::getMovesSlide(set <Move> & moves, const Board &board, const Delta * deltas, int numDelta) const {
+
+    for (int i = 0; i < numDelta; i++)
+    {
+        Position posMove(position, deltas[i]);
+
+        // slide through the blank spaces
+        for (;
+                posMove.isInvalid() && *board[posMove] == ' ';
+                posMove += deltas[i])
+        {
+            Move move;
+            move.setSrc(getPosition());
+            move.setDes(posMove);
+            move.setWhiteMove(isWhite());
+            moves.insert(move);
+        }
+
+        // capture if there is a piece at the end of the slide
+        if (posMove.isInvalid() && board[posMove]->isWhite() != fWhite && *board[posMove] != SPACE)
+        {
+            Move move;
+            move.setSrc(getPosition());
+            move.setDes(posMove);
+            move.setWhiteMove(isWhite());
+            move.setCapture(board[posMove].getLetter());
+            moves.insert(move);
+        }
+    }
+}
+
+void Piece::getMovesNoSlide(set <Move> & moves, const Board &board, const Delta * deltas, int numDelta) const{
+
+    for (int i = 0; i <numDelta; i++)
+    {
+        Position posMove(position,deltas[i]);
+        // capture if there is a piece at the end of the slide
+        if (posMove.isInvalid() &&
+            (board[posMove]->isWhite() != fWhite || *board[posMove] == SPACE))
+        {
+            Move move;
+            move.setSrc(getPosition());
+            move.setDes(posMove);
+            move.setWhiteMove(isWhite());
+            if (*board[posMove] != SPACE)
+                move.setCapture(board[posMove]->getLetter());
+            moves.insert(move);
+        }
+    }
+}
+
 
 void Pawn::addPromotion(set<Move> &moves, Move &move) const {
     move.setPromote(QUEEN);
@@ -12,7 +65,7 @@ void Pawn::addPromotion(set<Move> &moves, Move &move) const {
 void Pawn::getMoves(set<Move> &moves, const Board &board) const {
     Position posMove(getPosition(), isWhite() ? ADD_R : SUB_R);
     {
-        if (posMove.isValid() && board[posMove] == ' ')
+        if (posMove.isValid() && *board[posMove] == SPACE)
         {
             Move move;
             move.setSrc(getPosition());
@@ -39,7 +92,7 @@ void Pawn::getMoves(set<Move> &moves, const Board &board) const {
     {
         Position posMove(position.getRow() + (isWhite() ? 1 : -1), position.getCol() + cDelta[i]);
 
-        if (posMove.isValid() && board[posMove] != ' ' && board[posMove].isWhite() != isWhite())
+        if (posMove.isValid() && *board[posMove] != SPACE && board[posMove]->isWhite() != isWhite())
         {
             Move move;
             move.setSrc(getPosition());
@@ -68,11 +121,11 @@ void Pawn::getMoves(set<Move> &moves, const Board &board) const {
         Position posKill(position.getRow(), position.getCol() + cDelta[i]);
 
         if (posMove.isValid() && position.getRow() == (isWhite() ? 4 : 3) &&
-        board[posMove] == ' ' &&
-        board[posKill] == 'p' &&
-        board[posKill].isWhite() != isWhite() &&
-        board[posKill].getNMoves() == 1 &&
-        board[posKill].justMoved(board.getCurrentMove()))
+        *board[posMove] == ' ' &&
+        *board[posKill] == 'p' &&
+        board[posKill]->isWhite() != isWhite() &&
+        board[posKill]->getNMoves() == 1 &&
+        board[posKill]->justMoved(board.getCurrentMove()))
         {
             Move move;
             move.setSrc(getPosition());
@@ -92,38 +145,48 @@ void King::getMoves(set<Move> &moves, const Board &board) const {
                     {-1, 0},                            {1, 0},
                     {-1, -1}, {0, -1}, {1, -1}
             };
-    board.getBoard();
 
-
-    //getMovesNoslide(board, )
-    // Move to position if empty or filled by opponent.
-    for (int i = 0; i < 8; i++)
-    {
-        Position posMove(position, deltas[i]);
-        if (posMove.isValid() && (board[posMove].isWhite() != fWhite || board[posMove] == SPACE))
-        {
-            Move move;
-            move.setSrc(getPosition());
-            move.setDes(posMove);
-            move.setWhiteMove(isWhite());
-            move.setCastle(false);
-            moves.insert(move);
-        }
-    }
+    getMovesNoSlide(moves,board,deltas,8);
 }
 
 void Bishop::getMoves(set<Move> &moves, const Board &board) const {
-
+    const Delta deltas[] =
+            {
+                    {-1,1}, {1,1},
+                    {-1,-1}, {1,-1}
+            };
+    getMovesSlide(moves,board,deltas,4);
 }
 
 void Knight::getMoves(set<Move> &moves, const Board &board) const {
+    const Delta deltas[] =
+            {
+                    {-1,2},{1,2},
+                    {-2,1},{2,1},
+                    {-2,-1},{2,-1},
+                    {-1,-2},{1,-2}
+            };
 
+    getMovesNoSlide(moves,board,deltas,8);
 }
 
 void Queen::getMoves(set<Move> &moves, const Board &board) const {
+    const Delta deltas[] =
+            {
+                    {-1,1},{0,1},{1,1},
+                    {-1,0},{1,0},
+                    {-1,-1},{0,-1},{1,-1}
+            };
 
+    getMovesSlide(moves,board,deltas,8);
 }
 
 void Rook::getMoves(set<Move> &moves, const Board &board) const {
-
+    const Delta deltas[] =
+            {
+                    {0,1},
+                    {-1,0},{1,0},
+                    {0,-1}
+            };
+    getMovesSlide(moves,board,deltas,4);
 }

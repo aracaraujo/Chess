@@ -9,6 +9,8 @@
 #include "move.h"
 #include "piece.h"
 
+#pragma once
+
 
 class Board {
 
@@ -16,13 +18,11 @@ public:
 
     Board();
 
-    int getCurentMove() { return currentMove; };
+    int getCurrentMove() const { return currentMove; };
     bool whiteTurn() {return currentMove % 2 != 0; };
     void display(Position posHover, Position PosSel);
-    Piece* (&getBoard())[8][8]
-    {
-        return board;
-    }
+
+    Piece* operator[](Position& pos) const;
 
     void reset();
 

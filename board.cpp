@@ -74,3 +74,7 @@ void Board::reset() {
     this->currentMove = 1;
 }
 
+Piece *Board::operator[](Position &pos) const {
+    return board[pos.getRow()][pos.getCol()];
+}
+

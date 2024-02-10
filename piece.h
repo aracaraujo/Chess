@@ -22,7 +22,10 @@ public:
 
     virtual ~Piece() {};
 
-    const Piece & operator = (const Piece& rhs);
+    const Piece & operator = (const Piece& rhs) {
+        position = rhs.getPosition();
+        return *this;
+    };
 
     const Piece & operator = (const Position& rhs)
     {

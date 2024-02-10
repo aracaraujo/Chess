@@ -83,7 +83,8 @@ Piece *Board::operator[](Position &pos){
 }
 
 void Board::move(Move move) {
+    *board[move.getSrc().getRow()][move.getSrc().getCol()] = move.getDes();
+    *board[move.getDes().getRow()][move.getDes().getCol()] = move.getSrc();
     std::swap(board[move.getSrc().getRow()][move.getSrc().getCol()], board[move.getDes().getRow()][move.getDes().getCol()]);
-
 }
 

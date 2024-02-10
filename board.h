@@ -19,12 +19,16 @@ public:
     Board();
 
     int getCurrentMove() const { return currentMove; };
-    bool whiteTurn() {return currentMove % 2 != 0; };
+    bool whiteTurn() const {return currentMove % 2 != 0; };
     void display(Position posHover, Position PosSel);
 
     Piece* operator[](Position& pos) const;
 
+    Piece* operator[](Position& pos);
+
     void reset();
+
+    void move(Move move);
 
 //    void assign(Piece piece);
 private:

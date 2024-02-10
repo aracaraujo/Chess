@@ -32,15 +32,15 @@ Move::Move() :
  **********************************************/
 void Move::complete(const Board& board)
 {
-//   // set the capture
-//   capture = board[dest].getLetter();
-//
-//   // set the color
-//   isWhite = board[source].isWhite();
-//
-//   // handle if this is an en-passant
-//   if (capture == SPACE && board[source] == PAWN)
-//      enpassant = true;
+   // set the capture
+   capture = static_cast<PieceType>(board[dest]->getLetter());
+
+   // set the color
+   isWhite = board[source]->isWhite();
+
+   // handle if this is an en-passant
+   if (capture == SPACE && *board[source] == PAWN)
+      enpassant = true;
 }
 
 /***********************************************

@@ -30,7 +30,7 @@ void Piece::getMovesSlide(set <Move> & moves, const Board &board, const Delta * 
             move.setSrc(getPosition());
             move.setDes(posMove);
             move.setWhiteMove(isWhite());
-            move.setCapture(board[posMove].getLetter());
+            move.setCapture(static_cast<PieceType>(board[posMove]->getLetter()));
             moves.insert(move);
         }
     }
@@ -50,7 +50,7 @@ void Piece::getMovesNoSlide(set <Move> & moves, const Board &board, const Delta 
             move.setDes(posMove);
             move.setWhiteMove(isWhite());
             if (*board[posMove] != SPACE)
-                move.setCapture(board[posMove]->getLetter());
+                move.setCapture(static_cast<PieceType>(board[posMove]->getLetter()));
             moves.insert(move);
         }
     }
@@ -98,7 +98,7 @@ void Pawn::getMoves(set<Move> &moves, const Board &board) const {
             move.setSrc(getPosition());
             move.setDes(posMove);
             move.setWhiteMove(isWhite());
-            move.setCapture(board[posMove].getLetter());
+            move.setCapture(static_cast<PieceType>(board[posMove]->getLetter()));
 
             // Promotion
             if (posMove.getRow() == (isWhite() ? 7 : 0))
@@ -131,7 +131,7 @@ void Pawn::getMoves(set<Move> &moves, const Board &board) const {
             move.setSrc(getPosition());
             move.setDes(posMove);
             move.setWhiteMove(isWhite());
-            move.setCapture(board[posMove].getLetter());
+            move.setCapture(static_cast<PieceType>(board[posMove]->getLetter()));
             move.setEnPassant();
             moves.insert(move);
         }

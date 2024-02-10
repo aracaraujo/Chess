@@ -78,3 +78,12 @@ Piece *Board::operator[](Position &pos) const {
     return board[pos.getRow()][pos.getCol()];
 }
 
+Piece *Board::operator[](Position &pos){
+    return board[pos.getRow()][pos.getCol()];
+}
+
+void Board::move(Move move) {
+    std::swap(board[move.getSrc().getRow()][move.getSrc().getCol()], board[move.getDes().getRow()][move.getDes().getCol()]);
+
+}
+

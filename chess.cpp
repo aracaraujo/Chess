@@ -408,6 +408,36 @@ void callBack(Interface *pUI, void * p)
 
     Board* board = static_cast<Board*>(p);
 
+    set <Move> possible;
+    Position selPos = Position(pUI->getSelectPosition());
+    if (pUI->getSelectPosition() != -1 && pUI->getPreviousPosition() != -1)
+    {
+        if ((*board)[selPos]->getLetter() == ' ')
+        {
+            pUI->clearSelectPosition();
+        }
+        else if ((*board)[selPos]->isWhite() == board->whiteTurn()) {
+            pUI->clearSelectPosition();
+        }
+    }
+
+    if (pUI->getSelectPosition() >= 0 && pUI->getPreviousPosition() >= 0)
+    {
+        Move move;
+        move.setSrc(Position(pUI->getPreviousPosition()));
+        move.setDes(Position(pUI->getSelectPosition()));
+        move.complete(*board);
+
+        Position prevPos = pUI->getPreviousPosition();
+        (*board)[prevPos]->getMoves(possible,*board);
+
+        auto it = possible.find(move);
+        if (it != possible.end())
+            board->move(*it);
+        pUI->clearSelectPosition();
+        pUI->clearPreviousPosition();
+    }
+
     board->display(pUI->getHoverPosition(),pUI->getSelectPosition());
 
 

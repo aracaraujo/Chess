@@ -53,13 +53,15 @@ public:
     virtual void getMoves(set<Move> & moves, const Board & board) const = 0;
 
 protected:
-    set <Move> getMovesSlide( const Board & board,
-                              const Delta deltas[],
+    void getMovesSlide( set <Move> & moves,
+                              const Board & board,
+                              const Delta * deltas,
                               int numDelta) const;
 
-    set <Move> getMovesNoslide(const Board& board,
-                               const Delta deltas[],
-                               int numDelta) const;
+    void getMovesNoSlide( set <Move> & moves,
+                        const Board & board,
+                        const Delta * deltas,
+                        int numDelta) const;
 
 
     Position position;

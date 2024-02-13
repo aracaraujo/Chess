@@ -20,7 +20,7 @@ public:
 
     int getCurrentMove() const { return currentMove; };
     bool whiteTurn() const {return currentMove % 2 != 0; };
-    void display(Position posHover, Position PosSel);
+    void display(Position posHover, Position PosSel, set <Move> possible); // added possible as parameter
 
     Piece* operator[](Position& pos) const;
 

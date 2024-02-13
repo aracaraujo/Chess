@@ -46,7 +46,7 @@ Board::Board() {
     this->currentMove = 1;
 }
 
-void Board::display(Position posHover, Position PosSel) {
+void Board::display(Position posHover, Position PosSel, set <Move> possible) { // added possible as parameter
 
     ogstream gout;
     // draw the checkerboard
@@ -57,9 +57,12 @@ void Board::display(Position posHover, Position PosSel) {
     gout.drawSelected(PosSel.getLocation());
 
     // draw the possible moves
-//    set <int> :: iterator it;
-//    for (it = possible.begin(); it != possible.end(); ++it)
-//        gout.drawPossible(*it);
+    set<Move>::iterator it;
+    for (it = possible.begin(); it != possible.end(); ++it)
+    {
+        gout.drawPossible(it->getDes().getLocation());
+
+    }
 
     for (int r = 0; r < 8; r++) {
         for (int c = 0; c < 8; c++) {

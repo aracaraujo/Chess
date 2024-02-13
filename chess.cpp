@@ -419,17 +419,17 @@ void callBack(Interface *pUI, void * p)
         move.setDes(Position(pUI->getSelectPosition()));
         move.complete(*board);
 
-//        (*board)[prevPos]->getMoves(possible,*board);
-//
-//        auto it = possible.find(move);
-//        if (it != possible.end())
-//            board->move(*it);
+        (*board)[prevPos]->getMoves(possible,*board);
+
+        auto it = possible.find(move);
+        if (it != possible.end())
+            board->move(*it);
         board->move(move);
         pUI->clearSelectPosition();
         pUI->clearPreviousPosition();
     }
 
-    board->display(pUI->getHoverPosition(),pUI->getSelectPosition());
+    board->display(pUI->getHoverPosition(),pUI->getSelectPosition(), possible); // added possible as argument
 
 
 }

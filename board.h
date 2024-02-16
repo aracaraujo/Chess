@@ -16,31 +16,40 @@ class Board {
 
 public:
 
-    Board();
+    Board(ogstream* pgout);
 
     int getCurrentMove() const { return currentMove; };
     bool whiteTurn() const {return currentMove % 2 != 0; };
-    void display(Position posHover, Position PosSel, set <Move> possible); // added possible as parameter
+    void display(const Position& posHover, const Position& PosSel); // added possible as parameter
 
-    Piece* operator[](Position& pos) const;
+    const Piece& operator[](const Position& pos) const{
+        return *board[pos.getRow()][pos.getCol()];
+    }
 
-    Piece* operator[](Position& pos);
+    Piece& operator[](Position& pos){
+        return *board[pos.getRow()][pos.getCol()];
+    }
+
+    void operator -= (const Position & pos);
+
+    const Piece* operator = (Piece *pRhs);
 
     void reset();
 
-    void move(Move move);
+    void remove(const Position& pos);
 
-//    void assign(Piece piece);
-private:
+    void move(const Move& move);
+
+    void swap(Position & pos1,Position & pos2);
+
+protected:
 
     // Attributes
     Piece * board[8][8];
-
     int currentMove;
-
-    // Methods
-
+    ogstream* pgout;
 };
 
 
 #endif //CHESS_BOARD_H
+

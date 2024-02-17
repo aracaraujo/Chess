@@ -8,6 +8,8 @@
 #include "uiDraw.h"       // for draw*
 #include <set>            // for STD::SET
 #include "board.h"
+#include "piece.h"
+#include "iostream"
 
 using namespace std;
 

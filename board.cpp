@@ -147,7 +147,7 @@ void Board::move(const Move& move) {
     }
 
         // promotion
-    else if (move.getPromotion() != PIECE_EMPTY)
+    else if (move.getPromotion() != SPACE)
     {
         *this -= src;
         remove(des);
@@ -191,8 +191,8 @@ void Board::swap(Position &pos1,Position &pos2) {
     assert(pos1.isValid());
     assert(pos2.isValid());
 
-    Piece *p = board[pos1.getRow()][pos2.getCol()];
-    board[pos1.getRow()][pos2.getCol()] = board[pos2.getRow()][pos2.getCol()];
+    Piece *p = board[pos1.getRow()][pos1.getCol()];
+    board[pos1.getRow()][pos1.getCol()] = board[pos2.getRow()][pos2.getCol()];
     board[pos2.getRow()][pos2.getCol()] = p;
 
     (*this)[pos1] = pos1;

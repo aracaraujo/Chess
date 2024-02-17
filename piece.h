@@ -9,6 +9,7 @@
 #include "uiDraw.h"
 #include "move.h"
 #include <set>
+#include "iostream"
 
 using namespace std;
 
@@ -48,7 +49,8 @@ public:
     }
 
     // Setters
-    void setLastMove(int currentMove) { lastMove = currentMove; };
+    void setLastMove(int currentMove) {
+        lastMove = currentMove; };
 
     // virtual
     virtual char getLetter()                                      const = 0;

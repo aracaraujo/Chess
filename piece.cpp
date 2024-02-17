@@ -4,6 +4,7 @@
 
 #include "piece.h"
 #include "board.h"
+#include "iostream"
 
 void Piece::getMovesSlide(set <Move> & moves, const Board &board, const Delta * deltas, int numDelta) const {
 
